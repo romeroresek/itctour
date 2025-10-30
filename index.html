@@ -1,43 +1,469 @@
-<!-- ✅ META para móviles (ponlo en <head> si puedes) -->
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Itapúa Tenis Club</title>
+  <meta name="description" content="Landing page oficial del Itapúa Tenis Club: categorías, ranking, torneos, calendario, partidos, cuadros, horarios, contacto y comisión directiva.">
 
-<!-- ✅ Contenedor responsive -->
-<div class="sheet-embed">
-  <iframe
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTVoCO2vkLn2uRo-TyTrTkh2KmX6S_TW-VoRwrNffeqPesCEtOLhPlgQlHjP4rNrTLpBo8BBa4q6YoB/pubhtml?gid=1536362837&single=true&widget=true&headers=false"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Planilla"
-  ></iframe>
-</div>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-<style>
-  /* Contenedor: ocupa todo el ancho y casi todo el alto de la vista */
-  .sheet-embed {
-    position: relative;
-    width: 100%;
-    /* Ajusta el alto según necesites; 100vh = alto completo de la pantalla */
-    height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-    max-width: 100%;
-    overflow: hidden;
-  }
-
-  .sheet-embed iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  /* 👇 Opcional: en pantallas muy pequeñas deja un poco de margen vertical */
-  @media (max-width: 420px) {
-    .sheet-embed {
-      height: 90vh;
+  <style>
+    :root{
+      --club-blue:#0d47a1;   /* azul principal */
+      --club-red:#c62828;    /* rojo acento */
+      --club-dark:#0b1220;   /* texto oscuro */
     }
-  }
+    body{ color:#111827; }
 
-  /* 👇 Si tienes un header fijo arriba, resta su alto (ej., 56px) */
-  /* .sheet-embed { height: calc(100vh - 56px); } */
-</style>
+    .navbar{
+      --bs-navbar-bg: #ffffff;
+      background:#fff !important;
+    }
+    .navbar-brand{
+      font-weight:800; letter-spacing:.2px;
+    }
+    .navbar .nav-link{ font-weight:600; }
+    .navbar .btn-cta{
+      --bs-btn-bg: var(--club-red);
+      --bs-btn-border-color: var(--club-red);
+      --bs-btn-hover-bg:#e53935;
+      --bs-btn-hover-border-color:#e53935;
+    }
+
+    /* Hero */
+    .hero{
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(13,71,161,.15), transparent),
+                  linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      padding-top: 7rem; padding-bottom: 5rem;
+    }
+    .hero h1{ font-weight: 900; letter-spacing:-.02em; }
+    .hero h1 span{ color: var(--club-blue); }
+    .hero .sub{ color:#334155; }
+
+    /* Buttons */
+    .btn-blue{
+      --bs-btn-bg: var(--club-blue);
+      --bs-btn-border-color: var(--club-blue);
+      --bs-btn-hover-bg:#1565c0; --bs-btn-hover-border-color:#1565c0;
+    }
+    .btn-red{
+      --bs-btn-bg: var(--club-red);
+      --bs-btn-border-color: var(--club-red);
+      --bs-btn-hover-bg:#e53935; --bs-btn-hover-border-color:#e53935;
+    }
+    .btn-outline-blue{
+      --bs-btn-color: var(--club-blue);
+      --bs-btn-border-color: var(--club-blue);
+      --bs-btn-hover-color:#fff; --bs-btn-hover-bg: var(--club-blue);
+      --bs-btn-hover-border-color: var(--club-blue);
+    }
+
+    /* Section titles */
+    .section-title{ font-weight:800; letter-spacing:-.02em; }
+
+    /* Cards */
+    .card.clean{ border:1px solid #e5e7eb; }
+    .card.clean:hover{ box-shadow: 0 12px 24px rgba(2,8,23,.06); }
+
+    /* Accent underlines */
+    .underline{
+      position:relative; display:inline-block;
+    }
+    .underline::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:4px;
+      background: linear-gradient(90deg, var(--club-blue), var(--club-red)); border-radius:2px;
+    }
+
+    /* Footer */
+    .footer{ background:#0b1220; color:#cbd5e1; }
+    .footer a{ color:#e2e8f0; text-decoration:none; }
+    .footer a:hover{ color:#fff; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top border-bottom">
+    <div class="container">
+      <a class="navbar-brand" href="#inicio">
+        <span class="text-primary" style="color:var(--club-blue)">Itapúa</span> <span style="color:var(--club-red)">Tenis</span> Club
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center small fw-semibold">
+          <li class="nav-item"><a class="nav-link" href="#categorias">Categorías</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ranking">Ranking</a></li>
+          <li class="nav-item"><a class="nav-link" href="#torneos">Torneos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#calendario">Calendario</a></li>
+          <li class="nav-item"><a class="nav-link" href="#partidos">Partidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuadros">Cuadros</a></li>
+          <li class="nav-item"><a class="nav-link" href="#horarios">Horarios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#comision">Comisión Directiva</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-cta btn-sm" href="#contacto"><i class="bi bi-envelope me-1"></i>Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="inicio" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <h1 class="display-5 mb-3">Bienvenido al <span>Itapúa Tenis Club</span></h1>
+          <p class="lead sub mb-4">Competí, entrená y compartí tu pasión por el tenis en Posadas. Información oficial sobre categorías, ranking, torneos y más.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#torneos" class="btn btn-red btn-lg"><i class="bi bi-trophy-fill me-1"></i> Próximos torneos</a>
+            <a href="#ranking" class="btn btn-outline-blue btn-lg"><i class="bi bi-bar-chart-line me-1"></i> Ver ranking</a>
+            <a href="#calendario" class="btn btn-blue btn-lg"><i class="bi bi-calendar-event me-1"></i> Calendario</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="p-4 bg-white border rounded-4 shadow-sm">
+            <h5 class="fw-bold mb-3">Novedades del Club</h5>
+            <ul class="list-unstyled mb-0 small">
+              <li class="mb-2"><i class="bi bi-dot text-danger"></i> Inscripciones abiertas para el Abierto ITC.</li>
+              <li class="mb-2"><i class="bi bi-dot text-primary"></i> Actualización del ranking mensual.</li>
+              <li class="mb-2"><i class="bi bi-dot text-danger"></i> Nuevo sistema de turnos online.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CATEGORÍAS -->
+  <section id="categorias" class="py-5">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Categorías</span></h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Menores</h5>
+              <p class="mb-0 small">Sub 10, Sub 12, Sub 14, Sub 16. Entrenamientos y torneos formativos.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Adultos</h5>
+              <p class="mb-0 small">Primera, Segunda, Tercera. Damas y Caballeros.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Seniors</h5>
+              <p class="mb-0 small">+35, +45, +55. Competencias y encuentros amistosos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING -->
+  <section id="ranking" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Ranking</span></h2>
+      <div class="table-responsive rounded-4 border bg-white">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-primary">
+            <tr>
+              <th>#</th><th>Jugador/a</th><th>Categoría</th><th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Nombre Apellido</td><td>Primera</td><td>1200</td></tr>
+            <tr><td>2</td><td>Nombre Apellido</td><td>Primera</td><td>1150</td></tr>
+            <tr><td>3</td><td>Nombre Apellido</td><td>Segunda</td><td>980</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-3">
+        <a href="#" class="btn btn-outline-blue"><i class="bi bi-download me-1"></i> Descargar ranking completo (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TORNEOS -->
+  <section id="torneos" class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <h2 class="section-title mb-0"><span class="underline">Torneos</span></h2>
+        <a href="#contacto" class="btn btn-blue btn-sm"><i class="bi bi-pencil-square me-1"></i> Inscribirme</a>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <span class="badge bg-danger mb-2">Inscripción abierta</span>
+              <h5 class="fw-bold">Abierto ITC - Fecha 1</h5>
+              <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i> 15–17 Nov</p>
+              <p class="small mb-3">Singles y Dobles. Damas y Caballeros. Cupos limitados.</p>
+              <a href="#contacto" class="btn btn-outline-blue btn-sm">Anotarme</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Interclubes Regional</h5>
+              <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i> 30 Nov – 1 Dic</p>
+              <p class="small mb-3">Representá al Itapúa. Equipos por categoría.</p>
+              <a href="#contacto" class="btn btn-outline-blue btn-sm">Más info</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Master Anual</h5>
+              <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i> 14–15 Dic</p>
+              <p class="small mb-3">Top 8 del ranking. Premiación especial.</p>
+              <a href="#contacto" class="btn btn-outline-blue btn-sm">Consultar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section id="calendario" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Calendario</span></h2>
+      <div class="table-responsive rounded-4 border bg-white">
+        <table class="table table-sm align-middle mb-0">
+          <thead class="table-danger">
+            <tr>
+              <th>Fecha</th><th>Evento</th><th>Categoría</th><th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>15 Nov</td><td>Abierto ITC - F1</td><td>Primera / Segunda</td>
+              <td><a class="btn btn-outline-blue btn-sm" href="#torneos">Ver</a></td>
+            </tr>
+            <tr>
+              <td>30 Nov</td><td>Interclubes</td><td>Equipos</td>
+              <td><a class="btn btn-outline-blue btn-sm" href="#torneos">Ver</a></td>
+            </tr>
+            <tr>
+              <td>14 Dic</td><td>Master Anual</td><td>Top 8</td>
+              <td><a class="btn btn-outline-blue btn-sm" href="#torneos">Ver</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTIDOS -->
+  <section id="partidos" class="py-5">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Partidos</span></h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="p-4 border rounded-4 h-100 bg-white">
+            <h5 class="fw-bold mb-3"><i class="bi bi-list-check me-1"></i> Próximos partidos</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Robles / Thames <span class="badge bg-primary">Hoy 19:30</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Dino / Aníbal vs Dos Santos / Zárate <span class="badge bg-secondary">Mañana 20:00</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-4 border rounded-4 h-100 bg-white">
+            <h5 class="fw-bold mb-3"><i class="bi bi-activity me-1"></i> Resultados recientes</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Robles def. Thames 6-4 6-3</li>
+              <li class="list-group-item">Dino/Aníbal def. Dos Santos/Zárate 7-5 6-7 10-7</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUADROS -->
+  <section id="cuadros" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Cuadros</span></h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Singles A</h5>
+              <p class="small">Descargá el cuadro en PDF o visualizalo online.</p>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btn-outline-blue btn-sm"><i class="bi bi-eye me-1"></i> Ver</a>
+                <a href="#" class="btn btn-blue btn-sm"><i class="bi bi-download me-1"></i> Descargar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card clean h-100 rounded-4">
+            <div class="card-body">
+              <h5 class="fw-bold">Dobles</h5>
+              <p class="small">Cuadro principal y qualy.</p>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btn-outline-blue btn-sm"><i class="bi bi-eye me-1"></i> Ver</a>
+                <a href="#" class="btn btn-blue btn-sm"><i class="bi bi-download me-1"></i> Descargar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section id="horarios" class="py-5">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Horarios</span></h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="p-4 border rounded-4 h-100 bg-white">
+            <h5 class="fw-bold mb-3"><i class="bi bi-clock-history me-1"></i> Canchas</h5>
+            <p class="small">Reserva de 7:00 a 23:00. Turnos de 60 o 90 min.</p>
+            <a href="#contacto" class="btn btn-red btn-sm">Solicitar turno</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-4 border rounded-4 h-100 bg-white">
+            <h5 class="fw-bold mb-3"><i class="bi bi-people me-1"></i> Escuelita & Entrenamientos</h5>
+            <ul class="small mb-3">
+              <li>Lun-Mié-Vie: 17:00–19:00 (Menores)</li>
+              <li>Mar-Jue: 19:00–21:00 (Adultos)</li>
+            </ul>
+            <a href="#contacto" class="btn btn-outline-blue btn-sm">Consultar cupos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMISIÓN DIRECTIVA -->
+  <section id="comision" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Comisión Directiva</span></h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4 text-center">
+            <div class="card-body">
+              <h6 class="text-muted">Presidente</h6>
+              <h5 class="fw-bold mb-1">Nombre Apellido</h5>
+              <a href="#contacto" class="small">Contacto</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4 text-center">
+            <div class="card-body">
+              <h6 class="text-muted">Vicepresidente</h6>
+              <h5 class="fw-bold mb-1">Nombre Apellido</h5>
+              <a href="#contacto" class="small">Contacto</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card clean h-100 rounded-4 text-center">
+            <div class="card-body">
+              <h6 class="text-muted">Secretaría</h6>
+              <h5 class="fw-bold mb-1">Nombre Apellido</h5>
+              <a href="#contacto" class="small">Contacto</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="py-5">
+    <div class="container">
+      <h2 class="section-title mb-4 text-center"><span class="underline">Contacto</span></h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="p-4 border rounded-4 h-100 bg-white">
+            <form class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" required>
+                  <div class="invalid-feedback">Ingresá tu nombre.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" required>
+                  <div class="invalid-feedback">Ingresá un email válido.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Mensaje</label>
+                  <textarea class="form-control" rows="4" required></textarea>
+                  <div class="invalid-feedback">Escribí tu mensaje.</div>
+                </div>
+                <div class="col-12 d-grid d-sm-flex gap-2">
+                  <button class="btn btn-blue" type="submit"><i class="bi bi-send me-1"></i> Enviar</button>
+                  <a class="btn btn-outline-blue" href="tel:+54XXXXXXXXX"><i class="bi bi-telephone me-1"></i> Llamar</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-4 border rounded-4 h-100 bg-white">
+            <h5 class="fw-bold mb-3">Ubicación</h5>
+            <p class="small mb-3">Itapúa Tenis Club – Posadas, Misiones.</p>
+            <div class="ratio ratio-16x9 rounded-3">
+              <!-- Reemplazá por tu mapa embebido de Google Maps -->
+              <iframe src="https://maps.google.com/maps?q=Posadas%20Misiones&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-4 mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="small">© <span id="y"></span> Itapúa Tenis Club · Todos los derechos reservados</div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="#" class="small"><i class="bi bi-facebook me-1"></i>Facebook</a>
+        <a href="#" class="small"><i class="bi bi-instagram me-1"></i>Instagram</a>
+        <a href="#contacto" class="btn btn-sm btn-red">Asociate</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Bootstrap validation
+    (()=>{
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+    // Current year
+    document.getElementById('y').textContent = new Date().getFullYear()
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

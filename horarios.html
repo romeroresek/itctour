@@ -1,0 +1,43 @@
+<!-- ✅ META para móviles (ponlo en <head> si puedes) -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- ✅ Contenedor responsive -->
+<div class="sheet-embed">
+  <iframe
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTVoCO2vkLn2uRo-TyTrTkh2KmX6S_TW-VoRwrNffeqPesCEtOLhPlgQlHjP4rNrTLpBo8BBa4q6YoB/pubhtml?gid=1536362837&single=true&widget=true&headers=false"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Planilla"
+  ></iframe>
+</div>
+
+<style>
+  /* Contenedor: ocupa todo el ancho y casi todo el alto de la vista */
+  .sheet-embed {
+    position: relative;
+    width: 100%;
+    /* Ajusta el alto según necesites; 100vh = alto completo de la pantalla */
+    height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .sheet-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* 👇 Opcional: en pantallas muy pequeñas deja un poco de margen vertical */
+  @media (max-width: 420px) {
+    .sheet-embed {
+      height: 90vh;
+    }
+  }
+
+  /* 👇 Si tienes un header fijo arriba, resta su alto (ej., 56px) */
+  /* .sheet-embed { height: calc(100vh - 56px); } */
+</style>

@@ -4,10 +4,7 @@
   <img src="images/flyerrm.jpeg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">RM odontología</h5>
-      <p class="card-text">Inicio Jueves 02/10 <br>
-        Categorías Damas, Caballeros, Mixtos
-      </p>
-    <a href="#" class="btn btn-primary">Inscripciones</a>
+    <a href="rmodontologia.php" class="btn btn-primary">Ingresar</a>
   </div>
 </div>
 <?php include __DIR__ . '/footer.php'; ?>

@@ -10,23 +10,23 @@
   </thead>
   <tbody>
     <tr>
-      <td>Roman Landi</td>
+      <th>Roman Landi</th>
       <td>Director</td>
       <td><a href="https://wa.me/3764586526" target="_blank">3764586526</a></td>
     </tr>
     <tr>
-      <td>Alejandro Corti</td>
+      <th>Alejandro Corti</th>
       <td>Arbitro General</td>
       <td><a href="https://wa.me/3764586526" target="_blank">3764361716</a></td>
     </tr>
     <tr>
-      <td>Mariela Enriquez</td>
+      <th>Mariela Enriquez</th>
       <td>Coordinadora Turnos</td>
       <td><a href="https://wa.me/3764586526" target="_blank">3764882884</a></td>
     </tr>
 
     <tr>
-      <td>Juan Romero</td>
+      <th>Juan Romero</th>
       <td>Cuadros</td>
       <td><a href="https://wa.me/3764586526" target="_blank">3764606708</a></td>
     </tr>

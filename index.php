@@ -1,20 +1,4 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Itapúa Tenis Club</title>
-  <meta name="description" content="Landing page oficial del Itapúa Tenis Club: categorías, ranking, torneos, calendario, partidos, cuadros, horarios, contacto y comisión directiva.">
-
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-</head>
-<body>
-  <!-- Navbar -->
   <?php include __DIR__ . '/header.php'; ?>
-  <br>
   <!-- Tarjetas -->
   <div class="card mx-auto" style="width: 18rem;">
   <img src="images/flyerrm.jpeg" class="card-img-top" alt="...">
@@ -26,32 +10,4 @@
     <a href="#" class="btn btn-primary">Inscripciones</a>
   </div>
 </div>
-  <!-- Footer -->
-  <footer class="footer py-4 mt-5">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-      <div class="small">© <span id="y"></span> Itapúa Tenis Club · Todos los derechos reservados</div>
-      <div class="d-flex align-items-center gap-3">
-        <a href="https://www.instagram.com/itapuatenisclubok/#" class="small"><i class="bi bi-instagram me-1"></i>Instagram</a>
-        <a href="https://wa.me/54376576332" class="btn btn-sm btn-red">Whatsapp</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Bootstrap validation
-    (()=>{
-      'use strict'
-      const forms = document.querySelectorAll('.needs-validation')
-      Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
-          form.classList.add('was-validated')
-        }, false)
-      })
-    })()
-    // Current year
-    document.getElementById('y').textContent = new Date().getFullYear()
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php include __DIR__ . '/footer.php'; ?>

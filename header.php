@@ -22,7 +22,7 @@
             <a class="nav-link" aria-current="page" href="index.php">Inicio</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="torneos.php">Torneos1</a>
+            <a class="nav-link" href="torneos.php">Torneos</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Ranking</a>

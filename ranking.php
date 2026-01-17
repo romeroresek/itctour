@@ -5,6 +5,8 @@
     <tbody id="tbl-body"></tbody>
   </table>
 </div>
+  <?php include __DIR__ . '/footer.php'; ?>
+
 
 <script>
 const SHEET_ID = "1E2RfMpesCwnYtudOFCF7ia4u50uoG8_xPXJe8wcV79Q";

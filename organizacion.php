@@ -10,6 +10,11 @@
   </thead>
   <tbody>
     <tr>
+      <th>Horacio Marosek</th>
+      <td>Presidente</td>
+      <td><a href="https://wa.me/" target="_blank"></a></td>
+    </tr>
+    <tr>
       <th>Roman Landi</th>
       <td>Director</td>
       <td><a href="https://wa.me/3764586526" target="_blank">3764586526</a></td>

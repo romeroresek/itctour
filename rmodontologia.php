@@ -23,7 +23,6 @@
                    Patrocinadores del torneo
                 </a>
                 <a href="#" class="list-group-item list-group-item-action">RM odontología</a>
-                <a href="https://pillowtop.com.ar" class="list-group-item list-group-item-action">Pillowtop</a>
             </div>
         </div>
     </div>
